@@ -1,0 +1,9 @@
+% bibentry template for lsst.bib in https://github.com/lsst/lsst-texmf/blob/master/texmf/bibtex/bib/lsst.bib
+
+@DocuShare{SQR-054,
+   author = { Adam Thornton },
+    title = {Moving RSP Interactive Notebook containers to conda},
+     year = 2021,
+    month = Feb,
+   handle = {SQR-054},
+      url = {https://sqr-054.lsst.io } }
