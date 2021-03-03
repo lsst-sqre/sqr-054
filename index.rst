@@ -217,6 +217,23 @@ will not work.  I propose we tag the final pip-based version and use
 that if at some point we have to rebuild a version from before
 ``rubinenv`` landed.
 
+Note that we will not be rebuilding historic images for newly-discovered
+security vulnerabilities in the stack packages.  The RSP by design
+provides its users with arbitrary code execution in the Notebook Aspect,
+so the rest of the infrastructure already needs to be secured against the
+notebook.  Notebook environments will be run with restricted capabilities
+and privileges to limit their ability to attack the hosting
+infrastructure.
+
+The scope of a security vulnerability in a historic image is therefore
+mostly limited to compromising the user's notebook itself.  Given the
+types of operations users are likely to perform with historic images
+(reproducing old results with a fixed version of the stack, not talking to
+malicious Internet sites or installing new, possibly-compromised
+software), this is an acceptable security risk given the important
+scientific objective of reproducibility of old results, which requires not
+upgrading software that's part of the scientific stack.
+
 Conclusion
 ==========
 
