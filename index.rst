@@ -44,10 +44,6 @@
 
 .. TODO: Delete the note below before merging new content to the master branch.
 
-.. note::
-
-   **This technote is not yet published.**
-
 We have typically used pip to install supplementary software into the
 "stack" environment, and maintained a separate "system" environment.
 This has grown increasingly fragile, and now that the rubinenv work has
@@ -156,6 +152,18 @@ things installed from pip via git repositories, conda itself can install
 all of the pip packages, which is something we take advantage of in our
 pinned builds).
 
+User-installed software
+-----------------------
+
+Allowing user-installed software will functionally be the same as it is
+in the current regime: ``pip install --user`` will continue to work, but
+users will also have the option to use ``conda env create`` or
+``conda env clone``; their installed packages will live under their home
+directories.  This can of course create issues as users have packages
+installed that are incompatible with later versions of the stack; this
+is why we offer the ``clear .local`` checkbox on the JupyterHub spawner
+form.
+
 Pinned "prod" builds
 ====================
 
@@ -180,6 +188,34 @@ If that is the case, perhaps it's time to drop the "prod" builds
 entirely, and just use conda to install our additional packages, since
 there does not seem to me to be any reason to be *more* zealous about
 exact pins than our upstream input container.
+
+Rebuilding Historic Images
+==========================
+
+In general, we *can* currently overlay our own packages onto older
+versions of the stack.  We don't do that very often, because the time
+investment to do so is nontrivial and it hasn't been requested much.  In
+general, the stack and JupyterLab UI should work, but things like Dask
+and Bokeh, which are fairly tightly coupled to the underlying Python,
+may or may not.
+
+In general, however, our practice has been to treat ancient images as
+immutable.  This of course presents a problem in that, for instance,
+Release 13 will no longer work with our modern spawning and
+authentication framework.  It may be worthwhile, as we approach
+operations, to determine how far back we want to support stack releases
+and spend some time modernizing the containers for release builds only,
+so that they all run with whatever the current launching framework at
+the beginning of operations is.  Clearly this effort should not be made
+for weekly or daily builds; however, this is almost self-correcting in
+that daily builds are purged after about a month, and weekly builds
+after a year and a half.  Only release builds persist forever.
+
+When we adopt the move to the conda-based world, we will lose the
+ability to rebuild images older than ``rubinenv`` since the conda solve
+will not work.  I propose we tag the final pip-based version and use
+that if at some point we have to rebuild a version from before
+``rubinenv`` landed.
 
 Conclusion
 ==========
