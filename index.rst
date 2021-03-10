@@ -180,7 +180,7 @@ significant effort) since December 2020.
 The existence of ``rubinenv`` means, however, that the stack itself is
 not fully pinned.  See, for instance,
 https://lsstc.slack.com/archives/C4RKBLK33/p1612202947357200?thread_ts=1612202910.356800&cid=C4RKBLK33
-, specifically Ely Rkkoff's statement "In the new conda unpinned env, it
+, specifically Eli Rykoff's statement "In the new conda unpinned env, it
 depends on what the solver hands us.  And that can change from day to
 day as new versions are released."
 
