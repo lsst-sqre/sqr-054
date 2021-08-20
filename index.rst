@@ -234,6 +234,26 @@ software), this is an acceptable security risk given the important
 scientific objective of reproducibility of old results, which requires not
 upgrading software that's part of the scientific stack.
 
+Choosing a recommended
+======================
+
+The spawner page for the RSP always provides a suggestion for which image to use when starting a container.
+We refer to this special image as the "Recommended Image."
+When choosing a recommended image, it's important to make sure that all of the various services and example notebooks work for that particular image.
+The process is described in detail `here <https://jira.lsstcorp.org/browse/DM-30240>`_.
+At a high level, the steps are:
+
+#. Select a candidate weekly build
+#. Owners of any notebooks distributed with the RSP should check that they run without error to completion on all deployments where they will be supplied.
+#. The primary stakeholders then all sign off.
+
+   - Frossie as manager of the RSP
+   - Gregory as product owner of the RSP
+   - Leanne for CET
+   - Yusra for Science Pipelines
+
+#. During a maintenance window, e.g. "Patch Thursday", devs will ensure the proposed recommended is pulled to nodes at all deployments and advance the recommended tag to the approved weekly image.
+
 Conclusion
 ==========
 
